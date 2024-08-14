@@ -25,13 +25,12 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-      env:  
-        AIO_RUNTIME_APIHOST: ${{secrets.AIO_RUNTIME_APIHOST}}
-        AIO_RUNTIME_AUTH: ${{secrets.AIO_RUNTIME_AUTH}}
-        AIO_RUNTIME_NAMESPACE: ${{secrets.AIO_RUNTIME_NAMESPACE}}  
-    # - run: npm ci
-    # - run: npm install -g @adobe/aio-cli # install aio cli
+        cache: 'npm' 
+    - run: npm ci
+    - run: npm install -g @adobe/aio-cli # install aio cli
     # - run: printf "${{secrets.AIO_RUNTIME}}" >> .aio
-    - run: echo "$AIO_RUNTIME_NAMESPACE"
     - run: aio app deploy
+      env:  
+          AIO_RUNTIME_APIHOST: ${{secrets.AIO_RUNTIME_APIHOST}}
+          AIO_RUNTIME_AUTH: ${{secrets.AIO_RUNTIME_AUTH}}
+          AIO_RUNTIME_NAMESPACE: ${{secrets.AIO_RUNTIME_NAMESPACE}} 
